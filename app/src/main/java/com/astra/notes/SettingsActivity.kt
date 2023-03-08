@@ -26,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         var viewImageLight = findViewById<View>(R.id.imageView7)
 
 
+        // TODO Cambiar lo del estilo
         if(globalDark){
             view.setBackgroundColor(Color.parseColor("#FF000000"))
             btn.setTextColor(Color.parseColor("#FFFFFFFF"))

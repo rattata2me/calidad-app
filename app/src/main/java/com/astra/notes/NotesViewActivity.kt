@@ -22,6 +22,8 @@ class NotesViewActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
+
+    // TODO codigo muerto
     private val auth = FirebaseAuth.getInstance()
 
     lateinit var noteName: String
@@ -33,6 +35,7 @@ class NotesViewActivity : AppCompatActivity() {
     lateinit var amounts: ArrayList<Int>
     lateinit var checks: ArrayList<Boolean>
 
+    // TODO Funcion muy larga
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes_view)
@@ -41,6 +44,7 @@ class NotesViewActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView4)
         var viewImageLight = findViewById<View>(R.id.imageView5)
 
+        // TODO Estilo
         if(MainActivity.globalDark){
             view.setBackgroundColor(Color.parseColor("#FF000000"))
             viewImageLight.setVisibility(View.GONE)
@@ -82,6 +86,7 @@ class NotesViewActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // TODO Demasiado largo sacar
         add_btn.setOnClickListener {
             products.add("")
             amounts.add(1)
@@ -109,6 +114,7 @@ class NotesViewActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Utils.showError(this, it.message.toString())
                 }
+            // TODO No crear un nuevo intent
             val intent = Intent(this, NotesViewActivity::class.java)
             intent.putExtra("name", noteName)
             intent.putExtra("subtitle", noteSubtitle)
@@ -176,6 +182,7 @@ class NotesViewActivity : AppCompatActivity() {
                     }
             }
             R.id.change_color ->{
+                // TODO Recargar la pagina arrelgar crash
                 val intent = Intent(this, ChangeColorActivity::class.java)
                 intent.putExtra("id", id)
                 intent.putExtra("name", noteName)

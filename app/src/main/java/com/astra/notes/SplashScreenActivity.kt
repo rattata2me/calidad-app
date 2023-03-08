@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_splash_screen.*
 import java.util.*
 import kotlin.concurrent.timerTask
 
+// Clase de inicio
+// TODO Dejar claro el concepto de que es la inicial
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

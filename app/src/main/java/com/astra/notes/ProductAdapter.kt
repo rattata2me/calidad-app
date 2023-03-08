@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import kotlinx.android.synthetic.main.product_layout.view.*
 
+
+// TODO Inversion para pruebas unitarias
 class ProductAdapter(
     private val activity: Activity,
     private val products: ArrayList<String>,

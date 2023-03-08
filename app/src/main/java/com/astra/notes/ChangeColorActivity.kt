@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_change_color.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
+// TODO Limpiarla un poco
 class ChangeColorActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
