@@ -22,7 +22,6 @@ class NotesViewActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
-    private val auth = FirebaseAuth.getInstance()
 
     lateinit var noteName: String
     lateinit var noteSubtitle: String
@@ -110,14 +109,7 @@ class NotesViewActivity : AppCompatActivity() {
                     Utils.showError(this, it.message.toString())
                 }
             val intent = Intent(this, NotesViewActivity::class.java)
-            intent.putExtra("name", noteName)
-            intent.putExtra("subtitle", noteSubtitle)
-            intent.putExtra("products", products)
-            intent.putExtra("amounts", amounts)
-            intent.putExtra("checks", checks)
-            intent.putExtra("color", color)
-            intent.putExtra("id", id)
-            intent.putExtra("iduser", userID)
+            codigorepetido(intent,id, color,noteName,noteSubtitle,products,amounts,userID,checks)
             startActivity(intent)
         }
 
@@ -177,17 +169,21 @@ class NotesViewActivity : AppCompatActivity() {
             }
             R.id.change_color ->{
                 val intent = Intent(this, ChangeColorActivity::class.java)
-                intent.putExtra("id", id)
-                intent.putExtra("name", noteName)
-                intent.putExtra("color", color)
-                intent.putExtra("subtitle", noteSubtitle)
-                intent.putExtra("products", products)
-                intent.putExtra("amounts", amounts)
-                intent.putExtra("checks", checks)
-                intent.putExtra("iduser", userID)
-                startActivity(intent)
+                codigorepetido(intent,id, color,noteName,noteSubtitle,products,amounts,userID,checks)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun codigorepetido(intent: Intent,id: String?,color:String?,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>, checks: ArrayList<Boolean>)
+    {
+        intent.putExtra("id", id)
+        intent.putExtra("name", noteName)
+        intent.putExtra("color", color)
+        intent.putExtra("subtitle", noteSubtitle)
+        intent.putExtra("products", products)
+        intent.putExtra("amounts", amounts)
+        intent.putExtra("checks", checks)
+        intent.putExtra("iduser", userID)
+
     }
 }
