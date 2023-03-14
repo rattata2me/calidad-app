@@ -23,7 +23,6 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
 
-    // TODO Funcion muy grande
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -36,8 +35,6 @@ class SignInActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView2)
         var viewImageLight = findViewById<View>(R.id.imageView16)
 
-
-        // TODO Mover a una clase de estilo
         if(MainActivity.globalDark){
             view.setBackgroundColor(Color.parseColor("#FF000000"))
             textView.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -68,7 +65,6 @@ class SignInActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
-                // TODO Patron defender
                 if (it.isSuccessful) {
                     val user = auth.currentUser
                     load(user)
@@ -95,7 +91,6 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun load(user: FirebaseUser?) {
-        // TODO Linea inutil
         Toast.makeText(this, "Authentication successful", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

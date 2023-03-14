@@ -12,8 +12,6 @@ import androidx.core.graphics.toColorInt
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.card_notes.view.*
 
-// TODO Muchos argumentos patron factory
-// TODO Solid inversion de dependencias
 class NoteAdapter(private val activity: Activity, private val names: MutableList<String>, private val subitles: MutableList<String>, private val colors: MutableList<String>,
                   private val products: MutableList<ArrayList<String>>, private val amounts: MutableList<ArrayList<Int>>, private val checks: MutableList<ArrayList<Boolean>>,
                   private val id: Int, private val idsnotas: MutableList<String>, private val userIds: MutableList<ArrayList<String>>
@@ -47,8 +45,6 @@ class NoteAdapter(private val activity: Activity, private val names: MutableList
         holder.layout.title_tv.text = name
         holder.layout.subtitle_tv.text = subtitle
 
-
-        // TODO Inversion
         holder.layout.note_button.setOnClickListener {
             val intent = Intent(activity, NotesViewActivity::class.java)
             intent.putExtra("name", name)

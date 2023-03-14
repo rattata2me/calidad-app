@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_notes_view.*
 import kotlinx.android.synthetic.main.activity_share.*
 
-// TODO Nombre lioso deberia ser Add Note, esta repetidas y encima no funciona
 class ShareActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()

@@ -20,14 +20,11 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
 
         val currentUser = auth.currentUser
-
-        // TODO Codigo muerto
         if(currentUser != null) {
             // Go to the screen after sign in
         }
     }
 
-    // TODO Funcion muy larga
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -39,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
         var textRegisterMail = findViewById<TextView>(R.id.register_email)
         var textRegisterPass = findViewById<TextView>(R.id.register_password)
 
-        // TODO Mover a la clase de estilo
         if(MainActivity.globalDark){
             view.setBackgroundColor(Color.parseColor("#FF000000"))
             textView1.setTextColor(Color.parseColor("#FFFFFFFF"))
@@ -85,7 +81,6 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     errorMessage.visibility = View.VISIBLE
-                    // TODO Gestion de error
                     // Show error
                 }
             }

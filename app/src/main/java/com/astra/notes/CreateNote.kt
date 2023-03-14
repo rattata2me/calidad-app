@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_create_note.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-// TODO Clase repetida
 class CreateNote : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()

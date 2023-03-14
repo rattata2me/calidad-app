@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    // TODO Gitanada
     companion object{
         var globalDark = true
     }
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
 
-    // TODO Acortar funcion
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -33,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         var view = findViewById<View>(R.id.LayoutMainActivity)
 
-        // TODO El estilo que lo gestione una clase solo
         if(globalDark){
             view.setBackgroundColor(Color.parseColor("#FF000000"))
         }else{
@@ -48,9 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         val swipeRefresh: SwipeRefreshLayout = findViewById(R.id.swrly)
 
-        // TODO Sacar load y action listener a una nueva clase
         fun load() {
-            // TODO sacar el uso de la base de datos a un controller/facade
             db.collection("Notes").get().addOnSuccessListener { notes ->
                 val ids_documentos: MutableList<String> = mutableListOf()
                 val names: MutableList<String> = mutableListOf()
@@ -73,7 +68,6 @@ class MainActivity : AppCompatActivity() {
                             val userIDS = note.get("UserID") as ArrayList<String>
                             for (a in userIDS) {
                                 if (a == currentUserId) {
-                                    // TODO Mover a un factory
                                     ids_documentos_final.add(ids_documentos[i])
                                     names.add(note.get("Name") as String)
                                     colors.add(note.get("Color") as String)
@@ -84,8 +78,6 @@ class MainActivity : AppCompatActivity() {
                                         checks.add(note.get("Checks") as ArrayList<Boolean>)
                                     }
                                     ids.add(note.get("UserID") as ArrayList<String>)
-
-                                    // TODO Arreglar esto
                                     rv.apply {
                                         setHasFixedSize(true)
                                         layoutManager = LinearLayoutManager(this@MainActivity)
