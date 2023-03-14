@@ -23,12 +23,12 @@ class ChangeColorActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView10)
         var viewImageLight = findViewById<View>(R.id.imageView11)
 
-        if(MainActivity.globalDark){
+        if (MainActivity.globalDark) {
             view.setBackgroundColor(Color.parseColor("#FF000000"))
             textView.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
             viewImageLight.setVisibility(View.GONE)
             viewImageDark.setVisibility(View.VISIBLE)
-        }else{
+        } else {
             view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
             textView.setBackgroundColor(Color.parseColor("#FF000000"))
             viewImageLight.setVisibility(View.VISIBLE)
@@ -59,31 +59,24 @@ class ChangeColorActivity : AppCompatActivity() {
 
         Red.setOnClickListener {
             db.collection("Notes").document("$noteId").update("Color", "#CB0900")
-            .addOnSuccessListener {
-                val intent = Intent(this, NotesViewActivity::class.java)
-                intent.putExtra("name", noteName)
-                intent.putExtra("subtitle", noteSubtitle)
-                intent.putExtra("products", products)
-                intent.putExtra("amounts", amounts)
-                intent.putExtra("color", "#CB0900")
-                intent.putExtra("iduser", userID)
-                startActivity(intent)
-            }
-            .addOnFailureListener {
-                Utils.showError(this, it.message.toString())
-            }
+                .addOnSuccessListener {
+                    val intent = Intent(this, NotesViewActivity::class.java)
+                    intent.putExtra("color", "#CB0900")
+                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
+                    startActivity(intent)
+                }
+                .addOnFailureListener {
+                    Utils.showError(this, it.message.toString())
+                }
         }
 
         Blue.setOnClickListener {
             db.collection("Notes").document("$noteId").update("Color", "#074AA3")
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
-                    intent.putExtra("name", noteName)
-                    intent.putExtra("subtitle", noteSubtitle)
-                    intent.putExtra("products", products)
-                    intent.putExtra("amounts", amounts)
+
                     intent.putExtra("color", "#074AA3")
-                    intent.putExtra("iduser", userID)
+                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
                     startActivity(intent)
                 }
                 .addOnFailureListener {
@@ -95,35 +88,38 @@ class ChangeColorActivity : AppCompatActivity() {
             db.collection("Notes").document("$noteId").update("Color", "#F0D804")
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
-                    intent.putExtra("name", noteName)
-                    intent.putExtra("subtitle", noteSubtitle)
-                    intent.putExtra("products", products)
-                    intent.putExtra("amounts", amounts)
+
                     intent.putExtra("color", "#F0D804")
-                    intent.putExtra("iduser", userID)
+                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
                     startActivity(intent)
                 }
-                .addOnFailureListener {
-                    Utils.showError(this, it.message.toString())
+                    .addOnFailureListener {
+                            Utils.showError(this, it.message.toString())
+                        }
                 }
+
+            Green.setOnClickListener {
+                db.collection("Notes").document("$noteId").update("Color", "#328A10")
+                    .addOnSuccessListener {
+                        val intent = Intent(this, NotesViewActivity::class.java)
+
+                        intent.putExtra("color", "#328A10")
+                        codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
+                        startActivity(intent)
+
+                    }
+                    .addOnFailureListener {
+                        Utils.showError(this, it.message.toString())
+                    }
+            }
+
         }
 
-        Green.setOnClickListener {
-            db.collection("Notes").document("$noteId").update("Color", "#328A10")
-                .addOnSuccessListener {
-                    val intent = Intent(this, NotesViewActivity::class.java)
-                    intent.putExtra("name", noteName)
-                    intent.putExtra("subtitle", noteSubtitle)
-                    intent.putExtra("products", products)
-                    intent.putExtra("amounts", amounts)
-                    intent.putExtra("color", "#328A10")
-                    intent.putExtra("iduser", userID)
-                    startActivity(intent)
-                }
-                .addOnFailureListener {
-                    Utils.showError(this, it.message.toString())
-                }
-        }
-
+    private fun codigorepetido(intent: Intent,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>){
+        intent.putExtra("name", noteName)
+        intent.putExtra("subtitle", noteSubtitle)
+        intent.putExtra("products", products)
+        intent.putExtra("amounts", amounts)
+        intent.putExtra("iduser", userID)
     }
 }
