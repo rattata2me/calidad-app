@@ -36,21 +36,11 @@ class RegisterActivity : AppCompatActivity() {
         var textRegisterMail = findViewById<TextView>(R.id.register_email)
         var textRegisterPass = findViewById<TextView>(R.id.register_password)
 
-        if(MainActivity.globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            textView1.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textView2.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textView3.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textRegisterMail.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textRegisterPass .setTextColor(Color.parseColor("#FFFFFFFF"))
-        }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            textView1.setTextColor(Color.parseColor("#FF000000"))
-            textView2.setTextColor(Color.parseColor("#FF000000"))
-            textView3.setTextColor(Color.parseColor("#FF000000"))
-            textRegisterMail.setTextColor(Color.parseColor("#FF000000"))
-            textRegisterPass .setTextColor(Color.parseColor("#FF000000"))
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, textView1, null, null)
+        ColorController.setThemeView(MainActivity.globalDark, textView2)
+        ColorController.setThemeView(MainActivity.globalDark, textView3)
+        ColorController.setThemeView(MainActivity.globalDark, textRegisterMail)
+        ColorController.setThemeView(MainActivity.globalDark, textRegisterPass)
 
         auth = Firebase.auth
 
