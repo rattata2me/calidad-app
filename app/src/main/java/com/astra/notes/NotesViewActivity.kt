@@ -109,8 +109,9 @@ class NotesViewActivity : AppCompatActivity() {
                     Utils.showError(this, it.message.toString())
                 }
             val intent = Intent(this, NotesViewActivity::class.java)
-            codigorepetido(intent,id, color,noteName,noteSubtitle,products,amounts,userID,checks)
-            startActivity(intent)
+            val intent2 =  codigorepetido(intent, id,color,noteName,noteSubtitle,products,amounts,userID,checks)
+
+            startActivity(intent2)
         }
 
         save_btn.setOnClickListener {
@@ -169,12 +170,14 @@ class NotesViewActivity : AppCompatActivity() {
             }
             R.id.change_color ->{
                 val intent = Intent(this, ChangeColorActivity::class.java)
-                codigorepetido(intent,id, color,noteName,noteSubtitle,products,amounts,userID,checks)
+                val intent2 =  codigorepetido(intent, id,color,noteName,noteSubtitle,products,amounts,userID,checks)
+
+                startActivity(intent2)
             }
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun codigorepetido(intent: Intent,id: String?,color:String?,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>, checks: ArrayList<Boolean>)
+    private fun codigorepetido(intent: Intent,id: String?,color:String?,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>, checks: ArrayList<Boolean>): Intent
     {
         intent.putExtra("id", id)
         intent.putExtra("name", noteName)
@@ -184,6 +187,8 @@ class NotesViewActivity : AppCompatActivity() {
         intent.putExtra("amounts", amounts)
         intent.putExtra("checks", checks)
         intent.putExtra("iduser", userID)
+        return intent
+
 
     }
 }

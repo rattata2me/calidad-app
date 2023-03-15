@@ -62,8 +62,9 @@ class ChangeColorActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
                     intent.putExtra("color", "#CB0900")
-                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
-                    startActivity(intent)
+                    val intent2 = codigorepetido(intent,noteName,noteSubtitle,products,amounts,userID)
+
+                    startActivity(intent2)
                 }
                 .addOnFailureListener {
                     Utils.showError(this, it.message.toString())
@@ -76,8 +77,9 @@ class ChangeColorActivity : AppCompatActivity() {
                     val intent = Intent(this, NotesViewActivity::class.java)
 
                     intent.putExtra("color", "#074AA3")
-                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
-                    startActivity(intent)
+                    val intent2 = codigorepetido(intent,noteName,noteSubtitle,products,amounts,userID)
+
+                    startActivity(intent2)
                 }
                 .addOnFailureListener {
                     Utils.showError(this, it.message.toString())
@@ -90,8 +92,9 @@ class ChangeColorActivity : AppCompatActivity() {
                     val intent = Intent(this, NotesViewActivity::class.java)
 
                     intent.putExtra("color", "#F0D804")
-                    codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
-                    startActivity(intent)
+                    val intent2 = codigorepetido(intent,noteName,noteSubtitle,products,amounts,userID)
+
+                    startActivity(intent2)
                 }
                     .addOnFailureListener {
                             Utils.showError(this, it.message.toString())
@@ -103,9 +106,10 @@ class ChangeColorActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         val intent = Intent(this, NotesViewActivity::class.java)
 
-                        intent.putExtra("color", "#328A10")
-                        codigorepetido(intent,noteName, noteSubtitle, products, amounts, userID)
-                        startActivity(intent)
+                        intent.putExtra("color", "#CB0900")
+                        val intent2 = codigorepetido(intent,noteName,noteSubtitle,products,amounts,userID)
+
+                        startActivity(intent2)
 
                     }
                     .addOnFailureListener {
@@ -115,11 +119,12 @@ class ChangeColorActivity : AppCompatActivity() {
 
         }
 
-    private fun codigorepetido(intent: Intent,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>){
+    private fun codigorepetido(intent: Intent,noteName : String?,noteSubtitle: String?, products: ArrayList<String>,amounts :ArrayList<Int>,userID: ArrayList<String>): Intent{
         intent.putExtra("name", noteName)
         intent.putExtra("subtitle", noteSubtitle)
         intent.putExtra("products", products)
         intent.putExtra("amounts", amounts)
         intent.putExtra("iduser", userID)
+        return intent
     }
 }
