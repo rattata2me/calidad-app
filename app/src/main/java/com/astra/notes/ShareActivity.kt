@@ -37,19 +37,8 @@ class ShareActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView8)
         var viewImageLight = findViewById<View>(R.id.imageView9)
 
-        if (MainActivity.globalDark) {
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            textTitle.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textView.setTextColor(Color.parseColor("#FFFFFFFF"))
-            viewImageLight.setVisibility(View.GONE)
-            viewImageDark.setVisibility(View.VISIBLE)
-        } else {
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            textTitle.setTextColor(Color.parseColor("#FF000000"))
-            textView.setTextColor(Color.parseColor("#FF000000"))
-            viewImageLight.setVisibility(View.VISIBLE)
-            viewImageDark.setVisibility(View.GONE)
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, textView, viewImageLight, viewImageDark)
+        ColorController.setThemeView(MainActivity.globalDark, textTitle)
 
         imageView8.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

@@ -35,23 +35,10 @@ class SignInActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView2)
         var viewImageLight = findViewById<View>(R.id.imageView16)
 
-        if(MainActivity.globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            textView.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textRegister.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textMail.setTextColor(Color.parseColor("#FFFFFFFF"))
-            textPass.setTextColor(Color.parseColor("#FFFFFFFF"))
-            viewImageLight.setVisibility(View.GONE)
-            viewImageDark.setVisibility(View.VISIBLE)
-        }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            textView.setTextColor(Color.parseColor("#FF000000"))
-            textRegister.setTextColor(Color.parseColor("#FF000000"))
-            textMail.setTextColor(Color.parseColor("#FF000000"))
-            textPass.setTextColor(Color.parseColor("#FF000000"))
-            viewImageLight.setVisibility(View.VISIBLE)
-            viewImageDark.setVisibility(View.GONE)
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, textView, viewImageLight, viewImageDark)
+        ColorController.setThemeView(MainActivity.globalDark, textRegister)
+        ColorController.setThemeView(MainActivity.globalDark, textMail)
+        ColorController.setThemeView(MainActivity.globalDark, textPass)
 
         email = findViewById(R.id.Email)
         password = findViewById(R.id.password)

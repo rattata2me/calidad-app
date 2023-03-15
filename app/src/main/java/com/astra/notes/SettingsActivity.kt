@@ -25,18 +25,11 @@ class SettingsActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView6)
         var viewImageLight = findViewById<View>(R.id.imageView7)
 
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, null, viewImageLight, viewImageDark)
 
-        if(globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            btn.setTextColor(Color.parseColor("#FFFFFFFF"))
-            viewImageLight.setVisibility(View.GONE)
-            viewImageDark.setVisibility(View.VISIBLE)
+        if(MainActivity.globalDark){
             btn.setChecked(true)
         }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            btn.setTextColor(Color.parseColor("#FF000000"))
-            viewImageLight.setVisibility(View.VISIBLE)
-            viewImageDark.setVisibility(View.GONE)
             btn.setChecked(false)
         }
 

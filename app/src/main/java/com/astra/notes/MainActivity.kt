@@ -31,11 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         var view = findViewById<View>(R.id.LayoutMainActivity)
 
-        if(globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-        }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, null, null, null)
 
         val add_btn: FloatingActionButton = findViewById(R.id.floatingActionButton)
         add_btn.setOnClickListener {

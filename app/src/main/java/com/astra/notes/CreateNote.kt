@@ -29,15 +29,7 @@ class CreateNote : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView13)
         var viewImageLight = findViewById<View>(R.id.imageView12)
 
-        if(MainActivity.globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            viewImageLight.setVisibility(View.GONE)
-            viewImageDark.setVisibility(View.VISIBLE)
-        }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            viewImageLight.setVisibility(View.VISIBLE)
-            viewImageDark.setVisibility(View.GONE)
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, null, viewImageLight, viewImageDark);
 
         val create_btn: Button = findViewById(R.id.create_btn)
 

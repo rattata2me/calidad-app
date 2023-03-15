@@ -40,15 +40,7 @@ class NotesViewActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView4)
         var viewImageLight = findViewById<View>(R.id.imageView5)
 
-        if(MainActivity.globalDark){
-            view.setBackgroundColor(Color.parseColor("#FF000000"))
-            viewImageLight.setVisibility(View.GONE)
-            viewImageDark.setVisibility(View.VISIBLE)
-        }else{
-            view.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
-            viewImageLight.setVisibility(View.VISIBLE)
-            viewImageDark.setVisibility(View.GONE)
-        }
+        ColorController.setThemeDarkLight(MainActivity.globalDark, view, null, viewImageLight, viewImageDark)
 
         val extras = intent.extras
         noteName = extras!!.getString("name").toString()
