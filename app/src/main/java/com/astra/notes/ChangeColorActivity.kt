@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Button
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_change_color.*
-import kotlinx.android.synthetic.main.activity_settings.*
 
 class ChangeColorActivity : AppCompatActivity() {
 
@@ -45,10 +44,10 @@ class ChangeColorActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var Red: Button = findViewById(R.id.red_btn)
-        var Blue: Button = findViewById(R.id.blue_btn)
-        var Yellow: Button = findViewById(R.id.yellow_btn)
-        var Green: Button = findViewById(R.id.green_btn)
+        var red: Button = findViewById(R.id.red_btn)
+        var blue: Button = findViewById(R.id.blue_btn)
+        var yellow: Button = findViewById(R.id.yellow_btn)
+        var green: Button = findViewById(R.id.green_btn)
         val extras = intent.extras
         val noteId = extras?.getString("id")
         val noteName = extras?.getString("name")
@@ -57,7 +56,7 @@ class ChangeColorActivity : AppCompatActivity() {
         val products = extras?.get("products") as ArrayList<String>
         val amounts = extras.get("amounts") as ArrayList<Int>
 
-        Red.setOnClickListener {
+        red.setOnClickListener {
             db.collection("Notes").document("$noteId").update("Color", "#CB0900")
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
@@ -71,7 +70,7 @@ class ChangeColorActivity : AppCompatActivity() {
                 }
         }
 
-        Blue.setOnClickListener {
+        blue.setOnClickListener {
             db.collection("Notes").document("$noteId").update("Color", "#074AA3")
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
@@ -86,7 +85,7 @@ class ChangeColorActivity : AppCompatActivity() {
                 }
         }
 
-        Yellow.setOnClickListener {
+        yellow.setOnClickListener {
             db.collection("Notes").document("$noteId").update("Color", "#F0D804")
                 .addOnSuccessListener {
                     val intent = Intent(this, NotesViewActivity::class.java)
@@ -101,7 +100,7 @@ class ChangeColorActivity : AppCompatActivity() {
                         }
                 }
 
-            Green.setOnClickListener {
+            green.setOnClickListener {
                 db.collection("Notes").document("$noteId").update("Color", "#328A10")
                     .addOnSuccessListener {
                         val intent = Intent(this, NotesViewActivity::class.java)
