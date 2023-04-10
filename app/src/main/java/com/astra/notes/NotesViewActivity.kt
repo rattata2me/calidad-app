@@ -133,6 +133,33 @@ class NotesViewActivity : AppCompatActivity() {
                 }
         }
 
+        save_copy_btn.setOnClickListener {
+            noteName = title_tv.text.toString()
+            noteSubtitle = subtitle_tv.text.toString()
+            // Guardar los cambios en los productos y cantidades
+            for (i in 0 until prod_rv.childCount) {
+                products[i] = prod_rv.getChildAt(i).product_name.text.toString()
+                amounts[i] = prod_rv.getChildAt(i).amount_num.text.toString().toInt()
+                checks[i] = prod_rv.getChildAt(i).product_check.isChecked
+            }
+            val note = hashMapOf(
+                "Name" to noteName+"- Copy",
+                "Subtitle" to noteSubtitle,
+                "Products" to products,
+                "Amount" to amounts,
+                "Checks" to checks,
+                "Color" to color,
+                "UserID" to userID
+            )
+            db.collection("Notes").add(note)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Copied note", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Utils.showError(this, it.message.toString())
+                }
+        }
+
 
     }
 

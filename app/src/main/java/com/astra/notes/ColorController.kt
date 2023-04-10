@@ -24,7 +24,7 @@ class ColorController {
         }
 
         fun setThemeView(color : Boolean, view : TextView){
-            view.setTextColor(Color.parseColor(if(color) BLACKCOLOR else WHITECOLOR))
+            view.setTextColor(Color.parseColor(if(!color) BLACKCOLOR else WHITECOLOR))
         }
         fun changeVisibility(second : Boolean, view1 : View, view2 : View){
             view1.visibility = if(second) View.GONE else View.VISIBLE
