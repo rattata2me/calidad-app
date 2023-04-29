@@ -35,6 +35,7 @@ class SignInActivity : AppCompatActivity() {
         var viewImageDark = findViewById<View>(R.id.imageView2)
         var viewImageLight = findViewById<View>(R.id.imageView16)
 
+
         ColorController.setThemeDarkLight(MainActivity.globalDark, view, textView, viewImageLight, viewImageDark)
         ColorController.setThemeView(MainActivity.globalDark, textRegister)
         ColorController.setThemeView(MainActivity.globalDark, textMail)
@@ -44,6 +45,8 @@ class SignInActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
         loginbtn = findViewById(R.id.loginbtn)
         signupredirect = findViewById(R.id.noaccount)
+        signupredirect.setTextColor(Color.WHITE)
+
         auth = Firebase.auth
 
         loginbtn.setOnClickListener {
