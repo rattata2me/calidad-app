@@ -8,6 +8,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.AfterClass;
 import org.junit.Assert.*;
 
 
@@ -35,13 +36,14 @@ public class LoginIntegrationTest {
     }
 
     @Test
-    public  void testLogin(){
-        onView(withId(R.id.Email)).perform(typeText("s.s.2018@alumnos.urjc.es"),closeSoftKeyboard());
-        onView(withId(R.id.password)).perform(typeText("contraseña"), closeSoftKeyboard());
+    public  void testLogin() throws InterruptedException {
+        onView(withId(R.id.Email)).perform(typeText("g.grande.2019@alumnos.urjc.es"),closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText("Nosecual1"), closeSoftKeyboard());
         onView(withId(R.id.loginbtn)).perform(click());
-        assertEquals(FirebaseAuth.getInstance().getCurrentUser().getEmail(),"s.s.2018@alumnos.urjc.es");
+        Thread.sleep(1000);
+        assertEquals(FirebaseAuth.getInstance().getCurrentUser().getEmail(),"g.grande.2019@alumnos.urjc.es");
     }
-    @After
+    @AfterClass
     public static void logOut() {
         FirebaseAuth.getInstance().signOut();
     }
