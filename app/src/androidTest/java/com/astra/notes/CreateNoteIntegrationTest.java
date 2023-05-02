@@ -1,3 +1,4 @@
+
 package com.astra.notes;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -40,36 +41,35 @@ public class CreateNoteIntegrationTest {
         FirebaseAuth.getInstance().signOut();
         FirebaseAuth.getInstance().signInWithEmailAndPassword("g.grande.2019@alumnos.urjc.es", "Nosecual1");
     }
-        @Test
-        public void testNoteCreated() throws InterruptedException {
-            Thread.sleep(1000);
-            onView(withId(R.id.floatingActionButton)).perform(click());
-            onView(withId(R.id.title_tv)).perform(typeText("Nota nueva test espresso"), closeSoftKeyboard());
-            onView(withId(R.id.subtitle_tv)).perform(typeText("Test"), closeSoftKeyboard());
-            onView(withId(R.id.create_btn)).perform(click());
-            Thread.sleep(1500);
-            onView(ViewMatchers.withText("Nota nueva test espresso")).check(matches(isDisplayed()));
-            CollectionReference notesRef = FirebaseFirestore.getInstance().collection("Notes");
-            Query query = notesRef.whereEqualTo("title_tv","Nota nueva test espresso");
-            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task.getResult();
-                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                            // Se encontró al menos una nota con el nombre "Hola"
-                        } else {
-                            // No se encontró ninguna nota con el nombre "Hola"
-                        }
+    @Test
+    public void testNoteCreated() throws InterruptedException {
+        Thread.sleep(1000);
+        onView(withId(R.id.floatingActionButton)).perform(click());
+        onView(withId(R.id.title_tv)).perform(typeText("Nota nueva test espresso"), closeSoftKeyboard());
+        onView(withId(R.id.subtitle_tv)).perform(typeText("Test"), closeSoftKeyboard());
+        onView(withId(R.id.create_btn)).perform(click());
+        Thread.sleep(1500);
+        onView(ViewMatchers.withText("Nota nueva test espresso")).check(matches(isDisplayed()));
+        CollectionReference notesRef = FirebaseFirestore.getInstance().collection("Notes");
+        Query query = notesRef.whereEqualTo("title_tv","Nota nueva test espresso");
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+                    if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                        // Se encontró al menos una nota con el nombre "Hola"
                     } else {
-                        // Error al ejecutar la consulta
+                        // No se encontró ninguna nota con el nombre "Hola"
                     }
+                } else {
+                    // Error al ejecutar la consulta
                 }
-            });
+            }
+        });
 
 
 
 
-        }
+    }
 }
-
