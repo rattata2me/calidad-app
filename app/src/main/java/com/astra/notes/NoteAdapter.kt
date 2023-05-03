@@ -3,6 +3,7 @@ package com.astra.notes
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.text.Layout
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,14 +22,17 @@ class NoteAdapter(private val activity: Activity, private val names: MutableList
     class ViewHolder(val layout: View) : RecyclerView.ViewHolder(layout)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layout = LayoutInflater.from(parent.context).inflate(R.layout.card_notes, parent, false)
+        if(LayoutInflater.from(parent.context) != null) {
+            val layout = LayoutInflater.from(parent.context).inflate(R.layout.card_notes, parent, false)
 
-        return ViewHolder(layout)
+            return ViewHolder(layout)
+        }else{
+            return ViewHolder(parent);
+        }
     }
 
     override fun getItemCount() = names.size
 
-    private val db = FirebaseFirestore.getInstance()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val name = names[position]

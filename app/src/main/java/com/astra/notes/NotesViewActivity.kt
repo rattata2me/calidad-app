@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_notes_view.subtitle_tv
 import kotlinx.android.synthetic.main.activity_notes_view.title_tv
 import kotlinx.android.synthetic.main.product_layout.*
 import kotlinx.android.synthetic.main.product_layout.view.*
+import java.io.Serializable
 
 class NotesViewActivity : AppCompatActivity() {
 
@@ -133,8 +134,50 @@ class NotesViewActivity : AppCompatActivity() {
                 }
         }
 
+        save_copy_btn.setOnClickListener {
+            noteName = title_tv.text.toString()
+            noteSubtitle = subtitle_tv.text.toString()
+            // Guardar los cambios en los productos y cantidades
+            for (i in 0 until prod_rv.childCount) {
+                products[i] = prod_rv.getChildAt(i).product_name.text.toString()
+                amounts[i] = prod_rv.getChildAt(i).amount_num.text.toString().toInt()
+                checks[i] = prod_rv.getChildAt(i).product_check.isChecked
+            }
+            val note = copyNote(noteName, noteSubtitle, products, amounts, checks, color, userID);
+            db.collection("Notes").add(note)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Copied note", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Utils.showError(this, it.message.toString())
+                }
+        }
+
 
     }
+
+    companion object {
+        fun noteHashMap(noteName: String, noteSubtitle: String, products: ArrayList<String>,
+                        amounts: ArrayList<Int>, checks: ArrayList<Boolean>, color: String,
+                        userID: ArrayList<String>): HashMap<String, Serializable> = hashMapOf(
+            "Name" to noteName,
+            "Subtitle" to noteSubtitle,
+            "Products" to products,
+            "Amount" to amounts,
+            "Checks" to checks,
+            "Color" to color,
+            "UserID" to userID
+        );
+        public fun copyNote(noteName: String, noteSubtitle: String, products: ArrayList<String>,
+                            amounts: ArrayList<Int>, checks: ArrayList<Boolean>, color: String,
+                            userID: ArrayList<String>): HashMap<String, Serializable> {
+
+            return noteHashMap(noteName+"- Copy", noteSubtitle, products, amounts, checks, color, userID);
+        }
+
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.note_menu, menu)
