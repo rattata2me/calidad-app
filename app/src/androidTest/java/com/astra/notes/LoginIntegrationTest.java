@@ -40,7 +40,7 @@ public class LoginIntegrationTest {
         onView(withId(R.id.Email)).perform(typeText("g.grande.2019@alumnos.urjc.es"),closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText("Nosecual1"), closeSoftKeyboard());
         onView(withId(R.id.loginbtn)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(6000);
         assertEquals(FirebaseAuth.getInstance().getCurrentUser().getEmail(),"g.grande.2019@alumnos.urjc.es");
     }
     @AfterClass

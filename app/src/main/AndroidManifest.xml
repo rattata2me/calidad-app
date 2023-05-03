@@ -50,6 +50,16 @@
         <activity
             android:name=".SignInActivity"
             android:exported="true" />
+        <activity
+                android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+                tools:node="merge" android:exported="true">
+            <intent-filter tools:node="removeAll" />
+        </activity>
+        <activity
+                android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+                tools:node="merge" android:exported="true">
+            <intent-filter tools:node="removeAll" />
+        </activity>
     </application>
 
 </manifest>

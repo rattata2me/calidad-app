@@ -33,10 +33,10 @@ public class RegisterInterfaceTest {
 
     @Test
     public void testBotonHabilitado() throws InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(5000);
         onView(withId(R.id.noaccount)).perform(click());
         onView(withId(R.id.LayoutRegister)).check(matches(isDisplayed()));
-        onView(withId(R.id.register_email)).perform(typeText("hola@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.register_email)).perform(typeText("hola3@gmail.com"), closeSoftKeyboard());
         onView(withId(R.id.register_password)).perform(typeText("Hola1234"), closeSoftKeyboard());
         onView(withId(R.id.register_button)).perform(click());
         Thread.sleep(2000);

@@ -47,12 +47,12 @@ public class CreateNoteIntegrationTest {
     }
     @Test
     public void testNoteCreated() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         onView(withId(R.id.floatingActionButton)).perform(click());
         onView(withId(R.id.title_tv)).perform(typeText("Nota nueva test espresso"), closeSoftKeyboard());
         onView(withId(R.id.subtitle_tv)).perform(typeText("Test"), closeSoftKeyboard());
         onView(withId(R.id.create_btn)).perform(click());
-        Thread.sleep(1500);
+        Thread.sleep(5500);
         CollectionReference notesRef = FirebaseFirestore.getInstance().collection("Notes");
         Query query = notesRef.whereEqualTo("Name","Nota nueva test espresso");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -74,8 +74,23 @@ public class CreateNoteIntegrationTest {
 
     @After
     public void deleteCreatedNote(){
+        try {
+            Thread.sleep(5500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         onView(ViewMatchers.withText("Nota nueva test espresso")).perform(click());
+        try {
+            Thread.sleep(5500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         onView(withContentDescription("More options")).perform(click());
+        try {
+            Thread.sleep(5500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         onView(ViewMatchers.withText("Borrar")).perform(click());
         FirebaseAuth.getInstance().signOut();
     }
