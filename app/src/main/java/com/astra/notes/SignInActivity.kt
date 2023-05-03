@@ -9,18 +9,19 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SignInActivity : AppCompatActivity() {
-
-    private lateinit var email: EditText
-    private lateinit var password: EditText
+    lateinit var email: EditText
+    lateinit var password: EditText
     private lateinit var loginbtn: Button
     private lateinit var signupredirect: TextView
-    private lateinit var auth: FirebaseAuth
+    lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +55,7 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please fill in both fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
+            login().addOnCompleteListener {
                 if (it.isSuccessful) {
                     val user = auth.currentUser
                     load(user)
@@ -62,13 +63,17 @@ class SignInActivity : AppCompatActivity() {
                 else {
                     Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                 }
-            }
+            };
         }
 
         signupredirect.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun login(): Task<AuthResult> {
+        return auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString());
     }
 
     //Ver si alguien ya tiene la sesión iniciada
