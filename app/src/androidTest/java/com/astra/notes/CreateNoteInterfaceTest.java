@@ -45,7 +45,8 @@ public class CreateNoteInterfaceTest {
     }
 
    @After
-    public void deleteCreatedNote(){
+    public void deleteCreatedNote() throws InterruptedException {
+        Thread.sleep(1000);
        onView(ViewMatchers.withText("Nota nueva test espresso")).perform(click());
        onView(withContentDescription("More options")).perform(click());
        onView(ViewMatchers.withText("Borrar")).perform(click());
