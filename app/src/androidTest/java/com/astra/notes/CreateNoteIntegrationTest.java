@@ -1,6 +1,7 @@
 
 package com.astra.notes;
 
+import androidx.annotation.NonNull;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -11,11 +12,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static org.junit.Assert.assertTrue;
+
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.After;
@@ -49,27 +53,30 @@ public class CreateNoteIntegrationTest {
         onView(withId(R.id.subtitle_tv)).perform(typeText("Test"), closeSoftKeyboard());
         onView(withId(R.id.create_btn)).perform(click());
         Thread.sleep(1500);
-        onView(ViewMatchers.withText("Nota nueva test espresso")).check(matches(isDisplayed()));
         CollectionReference notesRef = FirebaseFirestore.getInstance().collection("Notes");
-        Query query = notesRef.whereEqualTo("title_tv","Nota nueva test espresso");
+        Query query = notesRef.whereEqualTo("Name","Nota nueva test espresso");
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot querySnapshot = task.getResult();
                     if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                        // Se encontró al menos una nota con el nombre "Hola"
+                        assertTrue(true);
                     } else {
-                        // No se encontró ninguna nota con el nombre "Hola"
+                        assertTrue(false);
                     }
                 } else {
-                    // Error al ejecutar la consulta
+                    assertTrue(false);
                 }
             }
         });
+    }
 
-
-
-
+    @After
+    public void deleteCreatedNote(){
+        onView(ViewMatchers.withText("Nota nueva test espresso")).perform(click());
+        onView(withContentDescription("More options")).perform(click());
+        onView(ViewMatchers.withText("Borrar")).perform(click());
+        FirebaseAuth.getInstance().signOut();
     }
 }
